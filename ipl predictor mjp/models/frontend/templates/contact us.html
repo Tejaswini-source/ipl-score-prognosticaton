@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - IPL Prediction</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        .navbar {
+            background-color: #063970;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            height: 70px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #0a4c8c;
+            transform: scale(1.05);
+        }
+
+        .contact-container {
+            padding: 50px 20px;
+            max-width: 900px;
+            margin: auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-container h1 {
+            color: #063970;
+            margin-bottom: 20px;
+        }
+
+        .contact-container label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        .contact-container input,
+        .contact-container textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .contact-container button {
+            margin-top: 20px;
+            background-color: #063970;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-container button:hover {
+            background-color: #0a4c8c;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.6X84iqLESOqLzxUIpPwPsAHaEo&pid=Api&P=0&h=180" alt="IPL Logo" class="nav-logo">
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='home.html'">Home</button>
+            <button class="nav-button" onclick="window.location.href='history.html'">History</button>
+            <button class="nav-button" onclick="window.location.href='profile.html'">Profile</button>
+        </div>
+    </nav>
+
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+        <form>
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>

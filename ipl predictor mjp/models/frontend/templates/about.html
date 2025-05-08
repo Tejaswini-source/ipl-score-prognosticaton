@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - IPL Prediction</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      background-color: #063970;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      height: 70px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .nav-button:hover {
+      background-color: #0a4c8c;
+      transform: scale(1.05);
+    }
+
+    .main-container {
+      display: flex;
+      min-height: calc(100vh - 100px);
+    }
+
+    .left-image {
+      flex: 1;
+      background-image: url('https://static.wixstatic.com/media/82fddd_4e80d36fea5a4a2fb46b3e2860647dd3~mv2.gif/v1/fit/w_158,h_158,q_90,enc_avif,quality_auto/82fddd_4e80d36fea5a4a2fb46b3e2860647dd3~mv2.gif');
+      background-size: cover;
+      background-position: center;
+      min-height: 100%;
+      animation: zoomIn 1s ease forwards;
+    }
+
+    .about-container {
+      flex: 1;
+      padding: 50px 30px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: slideIn 1s ease forwards;
+      opacity: 0;
+    }
+
+    .about-container h1 {
+      color: #063970;
+      margin-bottom: 20px;
+    }
+
+    .about-container p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(1.1);
+        opacity: 0.6;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+
+      .left-image {
+        height: 300px;
+        animation: zoomInMobile 1s ease forwards;
+      }
+
+      .about-container {
+        padding: 30px 20px;
+        animation: slideInMobile 1s ease forwards;
+      }
+
+      @keyframes zoomInMobile {
+        from {
+          transform: scale(1.1);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInMobile {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <img src="https://tse1.mm.bing.net/th?id=OIP.6X84iqLESOqLzxUIpPwPsAHaEo&pid=Api&P=0&h=180.jpg" alt="IPL Logo" class="nav-logo" />
+    <div class="nav-buttons">
+      <button class="nav-button" onclick="window.location.href='home.html'">Home</button>
+      <button class="nav-button" onclick="window.location.href='history.html'">History</button>
+      <button class="nav-button" onclick="window.location.href='profile.html'">Profile</button>
+    </div>
+  </nav>
+
+  <div class="main-container">
+    <div class="left-image"></div>
+    <div class="about-container">
+      <h1>About Us</h1>
+      <p>Welcome to the IPL Match Prediction Platform! Our goal is to combine cricket analytics with the power of machine learning to provide accurate match outcome predictions, fun quizzes, real-time leaderboards, and engaging stats for every IPL enthusiast.</p>
+      <p>Whether you're a die-hard fan or just enjoy the thrill of predictions, our platform brings insights and entertainment right to your fingertips. Built by cricket lovers, for cricket lovers.</p>
+    </div>
+  </div>
+</body>
+</html>

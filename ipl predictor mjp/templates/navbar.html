@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <style>
+        /* Navbar CSS */
+        .navbar {
+            background-color: #063970;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            height: 70px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #0a4c8c;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.6X84iqLESOqLzxUIpPwPsAHaEo&pid=Api&P=0&h=180" alt="IPL Logo" class="nav-logo">
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='home.html'">Home</button>
+            <button class="nav-button" onclick="window.location.href='history.html'">History</button>
+            <button class="nav-button" onclick="window.location.href='profile.html'">Profile</button>
+        </div>
+    </nav>
+</body>
+</html>

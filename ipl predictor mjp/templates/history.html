@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction History</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(28, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #063970;
+            color: white;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            height: 50px;
+        }
+
+        .logo-container img {
+            height: 100%;
+            width: auto;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #ffcc00;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            color: #ffcc00;
+            border-bottom: 2px solid #ffcc00;
+        }
+
+        /* History Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(52, 49, 49, 0.8);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            color: #ffcc00;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            text-align: center;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .history-table th, 
+        .history-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .history-table th {
+            background-color: rgba(6, 57, 112, 0.7);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        .history-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .history-table .score {
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        .no-history {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        .back-btn {
+            display: block;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 30px auto 0;
+            text-align: center;
+            width: 100%;
+            max-width: 250px;
+            border: none;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(45deg, #2a5298, #1e3c72);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .history-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .logo-container {
+                height: 40px;
+            }
+
+            .history-table th, 
+            .history-table td {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nav-links a span {
+                display: none;
+            }
+            
+            .nav-links a i {
+                font-size: 1.3rem;
+            }
+            
+            .logo-container {
+                height: 35px;
+            }
+
+            .history-table {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="https://wallpapercave.com/wp/wp7104495.jpg" alt="IPL Logo">
+        </div>
+        <div class="nav-links">
+            <a href="/home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/history" class="active">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+            </a>
+            <a href="/profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+            <a href="/logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1>Your Prediction History</h1>
+        
+        {% if predictions %}
+        <div class="table-responsive">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Venue</th>
+                        <th>Batting Team</th>
+                        <th>Bowling Team</th>
+                        <th>Batsman</th>
+                        <th>Bowler</th>
+                        <th>Predicted Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for prediction in predictions %}
+                    <tr>
+                        <td>{{ prediction['timestamp'] }}</td>
+                        <td>{{ prediction['venue'] }}</td>
+                        <td>{{ prediction['batting_team'] }}</td>
+                        <td>{{ prediction['bowling_team'] }}</td>
+                        <td>{{ prediction['striker'] }}</td>
+                        <td>{{ prediction['bowler'] }}</td>
+                        <td class="score">{{ prediction['predicted_score'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="no-history">
+            <p>You haven't made any predictions yet.</p>
+            <p>Go to the prediction page to get started!</p>
+        </div>
+        {% endif %}
+        
+        <a href="/prediction" class="back-btn">Make New Prediction</a>
+    </div>
+
+    <script>
+        // Highlight current page in navbar
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

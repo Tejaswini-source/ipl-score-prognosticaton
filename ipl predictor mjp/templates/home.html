@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Prediction Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #063970;
+            color: white;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-container {
+            height: 50px;
+        }
+
+        .logo-container img {
+            height: 100%;
+            width: auto;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #ffcc00;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            color: #ffcc00;
+            border-bottom: 2px solid #ffcc00;
+        }
+
+        .nav-links a i {
+            font-size: 1.1rem;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            flex: 1;
+            background: linear-gradient(rgba(6, 57, 112, 0.8), rgba(6, 57, 112, 0.8)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        /* Action Buttons Section */
+        .action-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            padding: 40px;
+            background-color: white;
+        }
+
+        .action-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #063970;
+            color: white;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            max-width: 350px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-button:hover {
+            background-color: #0a4c8c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Dashboard Cards */
+        .dashboard {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 40px;
+            background-color: #f8f9fa;
+        }
+
+        .dashboard-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dashboard-card h2 {
+            color: #063970;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #ffcc00;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .leaderboard-list {
+            list-style-type: none;
+        }
+
+        .leaderboard-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .leaderboard-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .nav-links {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .navbar {
+                padding: 15px 30px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .logo-container {
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+            
+            .dashboard {
+                padding: 30px 20px;
+                gap: 20px;
+            }
+            
+            .logo-container {
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                padding: 40px 20px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .action-button {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+            
+            .dashboard {
+                padding: 20px 15px;
+            }
+            
+            .dashboard-card {
+                min-width: 100%;
+            }
+            
+            .nav-links a span {
+                display: none;
+            }
+            
+            .nav-links a i {
+                font-size: 1.3rem;
+            }
+            
+            .logo-container {
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="https://wallpapercave.com/wp/wp7104495.jpg" alt="IPL Logo">
+        </div>
+        <div class="nav-links">
+            <a href="/home" class="active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/history">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+            </a>
+            <a href="/profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+            <a href="/logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="hero-section">
+            <h1>Welcome to IPL Score Predictor</h1>
+            <p>Predict match outcomes, analyze player statistics, and compete with friends in our prediction league!</p>
+        </div>
+        
+        <div class="action-section">
+            <a href="/prediction" class="action-button">
+                <i class="fas fa-calculator"></i> Predict Match
+            </a>
+            <a href="/about" class="action-button">
+                <i class="fas fa-info-circle"></i> About Us
+            </a>
+            <a href="/contact" class="action-button">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div class="dashboard">
+        <div class="dashboard-card">
+            <h2><i class="fas fa-trophy"></i> Today's Match</h2>
+            <p><strong>MI vs CSK</strong></p>
+            <p><strong>Venue:</strong> Wankhede Stadium</p>
+            <p><strong>Time:</strong> 7:30 PM IST</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2><i class="fas fa-lightbulb"></i> IPL Fact</h2>
+            <p id="ipl-fact">Loading IPL fact...</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2><i class="fas fa-medal"></i> Leaderboard</h2>
+            <ul class="leaderboard-list">
+                <li><span>1. Rahul</span> <span>985 pts</span></li>
+                <li><span>2. Ananya</span> <span>920 pts</span></li>
+                <li><span>3. Vikram</span> <span>875 pts</span></li>
+                <li><span>4. Priya</span> <span>840 pts</span></li>
+                <li><span>5. Arjun</span> <span>810 pts</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // IPL Facts Data
+        const iplFacts = [
+            "Chris Gayle holds the record for the highest individual score in IPL - 175*",
+            "Mumbai Indians have won the most IPL titles (5 times)",
+            "Virat Kohli holds the record for most runs in a single season (973 in 2016)",
+            "Lasith Malinga is the highest wicket-taker in IPL history (170 wickets)",
+            "The first IPL match was played in 2008 between KKR and RCB",
+            "AB de Villiers has the fastest century in IPL (30 balls)",
+            "MS Dhoni has captained the most matches in IPL history",
+            "David Warner has won the Orange Cap 3 times (2015, 2017, 2019)",
+            "IPL is the most-attended cricket league in the world",
+            "Harbhajan Singh was the first Indian to take an IPL hat-trick"
+        ];
+
+        // Display random fact
+        function showRandomFact() {
+            const factElement = document.getElementById('ipl-fact');
+            const randomFact = iplFacts[Math.floor(Math.random() * iplFacts.length)];
+            factElement.textContent = randomFact;
+        }
+
+        // Highlight current page in navbar
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            showRandomFact();
+            setActiveNavLink();
+            
+            // Change fact every 10 seconds
+            setInterval(showRandomFact, 10000);
+        });
+
+        // Force home page reload when home link is clicked
+        document.querySelector('.nav-links a[href="/home"]').addEventListener('click', function(e) {
+            if (window.location.pathname === '/home') {
+                e.preventDefault();
+                window.location.href = '/home';
+            }
+        });
+    </script>
+</body>
+</html>

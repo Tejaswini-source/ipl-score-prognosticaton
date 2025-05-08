@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - IPL Prediction</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f0f2f5;
+      color: #333;
+    }
+
+    .navbar {
+      background-color: #063970;
+      color: white;
+      padding: 10px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-container {
+      height: 50px;
+    }
+
+    .logo-container img {
+      height: 100%;
+      width: auto;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links a:hover {
+      color: #ffcc00;
+      transform: translateY(-2px);
+    }
+
+    .nav-links a.active {
+      color: #ffcc00;
+      border-bottom: 2px solid #ffcc00;
+    }
+
+    .nav-links a i {
+      font-size: 1.1rem;
+    }
+
+    .main-contact {
+      display: flex;
+      max-width: 1000px;
+      margin: 50px auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      background: white;
+    }
+
+    .contact-info {
+      flex: 1;
+      background-color: #063970;
+      color: white;
+      padding: 40px 30px;
+    }
+
+    .contact-info h2 {
+      margin-bottom: 30px;
+      font-size: 26px;
+    }
+
+    .contact-info p {
+      margin: 20px 0;
+      font-size: 16px;
+    }
+
+    .contact-info p i {
+      margin-right: 15px;
+      color: #fff;
+    }
+
+    .contact-form {
+      flex: 1;
+      padding: 40px 30px;
+    }
+
+    .contact-form h2 {
+      color: #063970;
+      margin-bottom: 10px;
+    }
+
+    .contact-form p {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .contact-form button {
+      background-color: #063970;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background-color: #0a4c8c;
+    }
+
+    /* Flash message styles */
+    .flash-message {
+      padding: 15px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .flash-message.error {
+      background-color: #dc3545;
+    }
+
+    @media (max-width: 768px) {
+      .main-contact {
+        flex-direction: column;
+      }
+
+      .contact-info, .contact-form {
+        padding: 30px 20px;
+      }
+      
+      .navbar {
+        padding: 15px 30px;
+      }
+
+      .logo-container {
+        height: 40px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+      
+      .nav-links {
+        width: 100%;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+      
+      .nav-links a span {
+        display: none;
+      }
+      
+      .nav-links a i {
+        font-size: 1.3rem;
+      }
+
+      .logo-container {
+        height: 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo-container">
+      <img src="https://wallpapercave.com/wp/wp7104495.jpg" alt="IPL Logo">
+    </div>
+    <div class="nav-links">
+      <a href="/home">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="/history">
+        <i class="fas fa-history"></i>
+        <span>History</span>
+      </a>
+      <a href="/profile">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+      <a href="/contact" class="active">
+        <i class="fas fa-envelope"></i>
+        <span>Contact</span>
+      </a>
+      <a href="/logout">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="main-contact">
+    <div class="contact-info">
+      <h2>Contact Us</h2>
+      <p><i class="fas fa-map-marker-alt"></i> 32, Stadium Road, Mumbai 400001</p>
+      <p><i class="fas fa-envelope"></i> support@iplpredictor.com</p>
+      <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+      <p><i class="fas fa-fax"></i> +91 98765 43211</p>
+    </div>
+
+    <div class="contact-form">
+      <h2>Get in Touch</h2>
+      <p>Feel free to drop us a line below!</p>
+      
+      {% if message %}
+        <div class="flash-message {{ message_type }}">
+          {{ message }}
+        </div>
+      {% endif %}
+
+      <form method="POST" action="/contact" id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Highlight current page in navbar
+    document.addEventListener('DOMContentLoaded', function () {
+      const currentPage = window.location.pathname;
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      // Optional: fade out flash message after a few seconds
+      const flash = document.querySelector('.flash-message');
+      if (flash) {
+        setTimeout(() => {
+          flash.style.opacity = '0';
+        }, 3000);
+      }
+    });
+  </script>
+</body>
+</html>

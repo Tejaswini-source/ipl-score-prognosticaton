@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+    }
+
+    .navbar {
+      background-color: #063970;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      height: 60px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 10px 18px;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .nav-button:hover {
+      background-color: #0a4c8c;
+    }
+
+    .profile-container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .avatar-section {
+      margin-right: 20px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #ccc;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .camera-icon {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background-color: #063970;
+      color: white;
+      border-radius: 50%;
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .profile-header h2 {
+      color: #063970;
+    }
+
+    .edit-icon {
+      font-size: 18px;
+      color: #063970;
+      cursor: pointer;
+      background: #fff;
+      border: 2px solid #063970;
+      padding: 8px;
+      border-radius: 50%;
+    }
+
+    .profile-info {
+      width: 65%;
+    }
+
+    .form-group {
+      margin: 20px 0;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      padding-right: 40px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 35px;
+      right: 12px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #063970;
+    }
+
+    .update-btn {
+      background-color: #063970;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .update-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #status-message {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    @media screen and (max-width: 768px) {
+      .navbar, .nav-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .profile-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .profile-info {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <img src="https://tse1.mm.bing.net/th?id=OIP.6X84iqLESOqLzxUIpPwPsAHaEo&pid=Api&P=0&h=180" alt="Logo" class="nav-logo">
+    <div class="nav-buttons">
+      <button class="nav-button" onclick="location.href='home.html'">Home</button>
+      <button class="nav-button" onclick="location.href='history.html'">History</button>
+      <button class="nav-button" onclick="location.href='profile.html'">Profile</button>
+    </div>
+  </nav>
+
+  <!-- Profile Section -->
+  <div class="profile-container">
+    <!-- Avatar Section -->
+    <div class="avatar-section">
+      <div class="avatar">
+        <img src="https://via.placeholder.com/120"  style="width: 100%; height: 100%; object-fit: cover;">
+        <i class="fas fa-camera camera-icon" title="Change Profile Picture" onclick="changeProfilePicture()"></i>
+      </div>
+    </div>
+
+    <!-- Profile Information Section -->
+    <div class="profile-info">
+      <div class="profile-header">
+        <h2>User Profile</h2>
+        <i class="fas fa-pencil-alt edit-icon" title="Edit Profile" onclick="toggleEditMode()"></i>
+      </div>
+
+      <form id="profile-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter username" value="john_doe" readonly>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter email" value="john@example.com" readonly>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter password" value="password123" readonly>
+          <i class="fas fa-eye toggle-password" onclick="togglePassword(this, 'password')"></i>
+        </div>
+        <button type="submit" class="update-btn" id="updateBtn" disabled>Update Information</button>
+        <p id="status-message"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Toggle edit mode
+    function toggleEditMode() {
+      const fields = ['username', 'email', 'password'];
+      const isReadonly = document.getElementById('username').hasAttribute('readonly');
+
+      fields.forEach(id => {
+        const input = document.getElementById(id);
+        if (isReadonly) {
+          input.removeAttribute('readonly');
+        } else {
+          input.setAttribute('readonly', true);
+        }
+      });
+
+      document.getElementById('updateBtn').disabled = !isReadonly;
+    }
+
+    // Toggle password visibility
+    function togglePassword(icon, fieldId) {
+      const input = document.getElementById(fieldId);
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+      } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+      }
+    }
+
+    // Handle form submission
+    document.getElementById('profile-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      document.getElementById('status-message').textContent = "✅ Profile updated successfully!";
+      document.getElementById('status-message').style.color = "green";
+
+      // Optionally disable editing again
+      toggleEditMode();
+    });
+
+    // Handle profile picture change
+    function changeProfilePicture() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            document.querySelector('.avatar img').src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+      input.click();
+    }
+  </script>
+
+</body>
+</html>

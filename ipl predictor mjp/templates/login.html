@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://circleofcricket.com/post_image/post_image_48d6b24.JPG');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      background-color: white;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      height: 100px;
+      width: 100%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .scrolling-wrapper {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .scrolling-logos {
+      display: flex;
+      animation: scroll 30s linear infinite;
+      will-change: transform;
+    }
+
+    .scrolling-logos img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+      margin: 0 40px;
+      filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .scrolling-logos:hover {
+      animation-play-state: paused;
+    }
+
+    .page-title {
+      text-align: center;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 60px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+      color: black;
+      font-weight: bold;
+      margin: 30px 0;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInDown 0.8s ease-out forwards;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 800px;
+      display: flex;
+      flex-wrap: wrap;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: white;
+      opacity: 0;
+      transform: scale(0.9);
+      animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      animation-delay: 0.3s;
+    }
+
+    .login-left, .login-right {
+      flex: 1 1 300px;
+      padding: 30px;
+      min-width: 280px;
+    }
+
+    .login-left {
+      background-color: white;
+    }
+
+    .login-right {
+      background-color: #063970;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.5s ease-out forwards;
+      animation-delay: 0.8s;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    .input-group:nth-child(1) { animation-delay: 0.9s; }
+    .input-group:nth-child(2) { animation-delay: 1.0s; }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+      color: #063970;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      font-size: 13px;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.5s ease-out forwards;
+      animation-delay: 1.1s;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .options input[type="checkbox"] {
+      margin: 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #063970;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.5s ease-out forwards;
+      animation-delay: 1.2s;
+    }
+
+    button:hover {
+      background-color: #0a4c8c;
+    }
+
+    .login-right a {
+      margin-top: 10px;
+      color: white;
+      text-decoration: underline;
+    }
+
+    .flash-messages {
+      margin-bottom: 20px;
+    }
+    
+    .error {
+      color: #dc3545;
+      background-color: #f8d7da;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .success {
+      color: #28a745;
+      background-color: #d4edda;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    /* Animation Keyframes */
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar with scrolling logos -->
+<div class="navbar">
+  <div class="scrolling-wrapper">
+    <div class="scrolling-logos">
+      <!-- Original Set -->
+      <img src="https://cdn.dnaindia.com/sites/default/files/2015/04/25/330620-kkr.jpg?im=FitAndFill=(1200,900)" style="background: transparent;">
+      <img src="https://1000logos.net/wp-content/uploads/2024/03/Chennai-Super-Kings-Logo.png" style="background: transparent;">
+      <img src="https://i.pinimg.com/1200x/0f/49/47/0f494706612bcfb9014da69f0d4567a5.jpg" style="background: transparent;">
+      <img src="https://i.pinimg.com/736x/a0/1a/b1/a01ab1127a06b5585f01eb17ce8d19fb.jpg" style="background: transparent;">
+      <img src="https://i.pinimg.com/736x/5a/10/80/5a1080902b0268d9000c777ca2490507.jpg" style="background: transparent;">
+      <img src="https://seeklogo.com/images/D/delhi-daredevils-logo-9906C137AF-seeklogo.com.png" style="background: transparent;">
+      <img src="https://wallpapercave.com/wp/wp7002089.jpg" style="background: transparent;">
+      <img src="https://logowik.com/content/uploads/images/kochi-tuskers-kerala9130.jpg" style="background: transparent;">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWFEXdnwpxtNh2X1yKZgolC8geu9l7KCe0Ql2FNsAxtkgcW_GJ7Df-G6K_Cx3LX6DeBmQ&usqp=CAU" style="background: transparent;">
+      <img src="https://ih1.redbubble.net/image.1755290194.8827/flat,750x,075,f-pad,750x1000,f8f8f8.webp" style="background: transparent;">
+      <img src="https://m.media-amazon.com/images/I/51104feaLqL.jpg" style="background: transparent;">
+      
+      <!-- Duplicate Set for seamless looping -->
+      <img src="https://cdn.dnaindia.com/sites/default/files/2015/04/25/330620-kkr.jpg?im=FitAndFill=(1200,900)" style="background: transparent;">
+      <img src="https://1000logos.net/wp-content/uploads/2024/03/Chennai-Super-Kings-Logo.png" style="background: transparent;">
+      <img src="https://i.pinimg.com/1200x/0f/49/47/0f494706612bcfb9014da69f0d4567a5.jpg" style="background: transparent;">
+      <img src="https://i.pinimg.com/736x/a0/1a/b1/a01ab1127a06b5585f01eb17ce8d19fb.jpg" style="background: transparent;">
+      <img src="https://i.pinimg.com/736x/5a/10/80/5a1080902b0268d9000c777ca2490507.jpg" style="background: transparent;">
+      <img src="https://seeklogo.com/images/D/delhi-daredevils-logo-9906C137AF-seeklogo.com.png" style="background: transparent;">
+      <img src="https://wallpapercave.com/wp/wp7002089.jpg" style="background: transparent;">
+      <img src="https://logowik.com/content/uploads/images/kochi-tuskers-kerala9130.jpg" style="background: transparent;">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWFEXdnwpxtNh2X1yKZgolC8geu9l7KCe0Ql2FNsAxtkgcW_GJ7Df-G6K_Cx3LX6DeBmQ&usqp=CAU" style="background: transparent;">
+      <img src="https://ih1.redbubble.net/image.1755290194.8827/flat,750x,075,f-pad,750x1000,f8f8f8.webp" style="background: transparent;">
+      <img src="https://m.media-amazon.com/images/I/51104feaLqL.jpg" style="background: transparent;">
+    </div>
+  </div>
+</div>
+
+<h1 class="page-title">IPL Score Prediction</h1>
+
+<main>
+  <div class="container">
+    <div class="login-left">
+      <h2>Sign In</h2>
+      
+      <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+      
+      <form method="POST" action="{{ url_for('login') }}">
+        <div class="input-group">
+          <label>Username or Email</label>
+          <input type="text" name="username" placeholder="Enter username or email" required>
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Enter password" required>
+        </div>
+        <div class="options">
+          <span class="remember-me">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Remember Me</label>
+          </span>
+          <a href="{{ url_for('forgot_password') }}"><button type="button">Forgot Password</button></a> 
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    <div class="login-right">
+      <h2>Welcome Back!</h2>
+      <p>Don't have an account?</p>
+      <a href="{{ url_for('signup') }}"><button type="button">Sign Up</button></a>
+
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

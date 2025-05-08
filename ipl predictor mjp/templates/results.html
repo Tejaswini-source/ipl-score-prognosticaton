@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(28, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #063970;
+            color: white;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            height: 50px;
+        }
+
+        .logo-container img {
+            height: 100%;
+            width: auto;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #ffcc00;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            color: #ffcc00;
+            border-bottom: 2px solid #ffcc00;
+        }
+
+        /* Prediction Results Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #063970;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        h2 {
+            color: #063970;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .score {
+            color: #1e3c72;
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+
+        .match-details {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .match-details p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .match-details strong {
+            color: #063970;
+        }
+
+        .visualization {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .visualization img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid #ddd;
+        }
+
+        .back-btn {
+            display: block;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px auto 0;
+            text-align: center;
+            width: 100%;
+            max-width: 250px;
+            border: none;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(45deg, #2a5298, #1e3c72);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .logo-container {
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nav-links a span {
+                display: none;
+            }
+            
+            .nav-links a i {
+                font-size: 1.3rem;
+            }
+            
+            .match-details p {
+                font-size: 1rem;
+            }
+            
+            .logo-container {
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="https://wallpapercave.com/wp/wp7104495.jpg" alt="IPL Logo">
+        </div>
+        <div class="nav-links">
+            <a href="/home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/history">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+            </a>
+            <a href="/profile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+            <a href="/logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1>Prediction Results</h1>
+        
+        <h2>Predicted Score: <span class="score">{{ prediction }}</span></h2>
+        
+        <div class="match-details">
+            <p><strong>Venue:</strong> {{ venue }}</p>
+            <p><strong>Batting Team:</strong> {{ batting_team }}</p>
+            <p><strong>Bowling Team:</strong> {{ bowling_team }}</p>
+            <p><strong>Batsman:</strong> {{ striker }}</p>
+            <p><strong>Bowler:</strong> {{ bowler }}</p>
+        </div>
+        
+        <div class="visualization">
+            <h3>Model Training Performance</h3>
+            <img src="{{ plot_url }}" alt="Training and Validation Loss">
+        </div>
+        
+        <a href="/prediction" class="back-btn">Make Another Prediction</a>
+    </div>
+
+    <script>
+        // Highlight current page in navbar
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

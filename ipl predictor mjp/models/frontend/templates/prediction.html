@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Score Predictor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(28, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #063970;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            height: 70px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #0a4c8c;
+            transform: scale(1.05);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(247, 245, 245, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 40px auto;
+        }
+
+        h1 {
+            color: #161201;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #110202;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+
+        .predict-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .predict-btn:hover {
+            background: linear-gradient(45deg, #2a5298, #1e3c72);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .predict-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Loading spinner for form submission */
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #1a73e8;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.6X84iqLESOqLzxUIpPwPsAHaEo&pid=Api&P=0&h=180" alt="IPL Logo" class="nav-logo">
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='home.html'">Home</button>
+            <button class="nav-button" onclick="window.location.href='history.html'">History</button>
+            <button class="nav-button" onclick="window.location.href='profile.html'">Profile</button>
+        </div>
+    </nav>
+
+    <!-- Prediction Form -->
+    <div class="container">
+        <h1>IPL Score Predictor</h1>
+        <form id="predictionForm" action="/predict" method="POST">
+            <div class="form-group">
+                <label for="venue">Venue:</label>
+                <select id="venue" name="venue" required>
+                    <option value="" disabled selected>Select Venue</option>
+                    {% for venue in venues %}
+                        <option value="{{ venue }}">{{ venue }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="batting_team">Batting Team:</label>
+                <select id="batting_team" name="batting_team" required>
+                    <option value="" disabled selected>Select Batting Team</option>
+                    {% for team in bat_teams %}
+                        <option value="{{ team }}">{{ team }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bowling_team">Bowling Team:</label>
+                <select id="bowling_team" name="bowling_team" required>
+                    <option value="" disabled selected>Select Bowling Team</option>
+                    {% for team in bowl_teams %}
+                        <option value="{{ team }}">{{ team }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="striker">Batsman (Striker):</label>
+                <select id="striker" name="striker" required>
+                    <option value="" disabled selected>Select Batsman</option>
+                    {% for batsman in batsmen %}
+                        <option value="{{ batsman }}">{{ batsman }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bowler">Bowler:</label>
+                <select id="bowler" name="bowler" required>
+                    <option value="" disabled selected>Select Bowler</option>
+                    {% for bowler in bowlers %}
+                        <option value="{{ bowler }}">{{ bowler }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="predict-btn">Predict Score</button>
+
+            <div class="loading" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>Processing your prediction...</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Form submission handler
+        document.getElementById('predictionForm').addEventListener('submit', function(e) {
+            document.getElementById('loadingSpinner').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

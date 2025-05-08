@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Prediction Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+        }
+
+        .navbar {
+            background-color: #063970;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            height: 70px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: #0a4c8c;
+            transform: scale(1.05);
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 100vh;
+        }
+
+        .background-section {
+            flex: 1;
+            background-image: url('https://img.freepik.com/premium-vector/abstract-batsman-playing-cricket-from-splash-watercolors-illustration-paints_291138-130.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+        }
+
+        .button-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .action-button {
+            background-color: #063970;
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            width: 80%;
+            max-width: 400px;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .action-button:hover {
+            background-color: #0a4c8c;
+            transform: translateY(-3px);
+        }
+
+        .dashboard {
+            padding: 40px 20px;
+            background-color: #ffffff;
+        }
+
+        .dashboard h2 {
+            color: #063970;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #e8f0fe;
+            border-left: 5px solid #063970;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .quiz-question {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            margin: 10px 0 20px 0;
+        }
+
+        .quiz-options label {
+            display: block;
+            margin-bottom: 8px;
+            padding: 6px 12px;
+            background-color: #fff;
+            border: 1px solid #063970;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .quiz-options label:hover {
+            background-color: #d0e6ff;
+        }
+
+        .leaderboard-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .leaderboard-list li {
+            padding: 6px 0;
+            font-weight: bold;
+        }
+
+        .feedback {
+            font-weight: bold;
+            color: green;
+            margin-top: 5px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .background-section, .button-section {
+                flex: unset;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.6X84iqLESOqLzxUIpPwPsAHaEo&pid=Api&P=0&h=180" alt="IPL Logo" class="nav-logo">
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='home.html'">Home</button>
+            <button class="nav-button" onclick="window.location.href='history.html'">History</button>
+            <button class="nav-button" onclick="window.location.href='profile.html'">Profile</button>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="background-section"></div>
+        <div class="button-section">
+            <button class="action-button" onclick="window.location.href='prediction.html'">Predict Match</button>
+            <button class="action-button" onclick="window.location.href='about.html'">About Us</button>
+            <button class="action-button" onclick="window.location.href='contact.html'">Contact Us</button>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <div class="dashboard-section">
+            <h2>Today's Match Summary</h2>
+            <p><strong>Winner:</strong> Mumbai Indians</p>
+            <p><strong>Score:</strong> MI 180/5 (20) vs CSK 172/8 (20)</p>
+            <p><strong>Player of the Match:</strong> Rohit Sharma</p>
+        </div>
+
+        <div class="dashboard-section">
+            <h2>IPL Fact</h2>
+            <p id="ipl-fact">Loading IPL Fact...</p>
+        </div>
+
+        <div class="dashboard-section">
+            <h2>Fun IPL Quiz</h2>
+            <div id="quiz-container"></div>
+        </div>
+
+        <div class="dashboard-section">
+            <h2>Upcoming Match</h2>
+            <p><strong>RCB vs KKR</strong> - 7:30 PM IST, M. Chinnaswamy Stadium</p>
+            <p><strong>Predicted Toss Winner:</strong> RCB</p>
+        </div>
+
+        <div class="dashboard-section">
+            <h2>Leaderboard</h2>
+            <ul class="leaderboard-list">
+                <li>Rahul - 985 points</li>
+                <li>Ananya - 920 points</li>
+                <li>Vikram - 875 points</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const iplFacts = [
+            "Chris Gayle holds the record for the highest individual score in IPL — 175* runs!",
+            "Lasith Malinga has the most wickets in IPL history.",
+            "MS Dhoni has captained the most IPL matches ever.",
+            "Virat Kohli scored 973 runs in a single IPL season — the most by any player.",
+            "Mumbai Indians and Chennai Super Kings have each won 5 IPL titles.",
+            "AB de Villiers is the only player to have three 360-degree innings in IPL history.",
+            "Brendon McCullum scored 158* in the very first IPL match.",
+            "IPL is the most-attended cricket league in the world.",
+            "David Warner has won the Orange Cap 3 times — more than any other player.",
+            "Harbhajan Singh was the first Indian to take a hat-trick in IPL."
+        ];
+
+        const quizQuestions = [
+            {
+                question: "Who won the first IPL season?",
+                options: ["Mumbai Indians", "Rajasthan Royals", "Chennai Super Kings"],
+                answer: "Rajasthan Royals"
+            },
+            {
+                question: "Which player has the most IPL wickets?",
+                options: ["Lasith Malinga", "Dwayne Bravo", "Yuzvendra Chahal"],
+                answer: "Dwayne Bravo"
+            },
+            {
+                question: "Which team has won the most IPL titles?",
+                options: ["CSK", "MI", "KKR"],
+                answer: "MI"
+            },
+            {
+                question: "Who is known as Mr. IPL?",
+                options: ["Raina", "Kohli", "Dhoni"],
+                answer: "Raina"
+            },
+            {
+                question: "Who scored the first century in IPL?",
+                options: ["McCullum", "Sehwag", "Gambhir"],
+                answer: "McCullum"
+            }
+        ];
+
+        function displayRandomFact() {
+            const fact = iplFacts[Math.floor(Math.random() * iplFacts.length)];
+            document.getElementById("ipl-fact").textContent = fact;
+        }
+
+        function loadRandomQuiz() {
+            const quiz = document.getElementById("quiz-container");
+            quiz.innerHTML = "";
+
+            const randomIndex = Math.floor(Math.random() * quizQuestions.length);
+            const q = quizQuestions[randomIndex];
+
+            const question = document.createElement("div");
+            question.className = "quiz-question";
+            question.textContent = "1. " + q.question;
+
+            const options = document.createElement("div");
+            options.className = "quiz-options";
+
+            q.options.forEach(opt => {
+                const label = document.createElement("label");
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = "quiz1";
+                radio.value = opt;
+                radio.onclick = () => checkAnswer(radio, q.answer, label);
+
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(" " + opt));
+                options.appendChild(label);
+            });
+
+            quiz.appendChild(question);
+            quiz.appendChild(options);
+        }
+
+        function checkAnswer(input, correctAnswer, label) {
+            const feedback = document.createElement("div");
+            feedback.className = "feedback";
+            if (input.value === correctAnswer) {
+                feedback.textContent = "✅ Correct!";
+                feedback.style.color = "green";
+            } else {
+                feedback.textContent = "❌ Wrong! Correct answer is: " + correctAnswer;
+                feedback.style.color = "red";
+            }
+            // Remove previous feedback
+            const parent = label.parentElement;
+            const existing = parent.querySelector(".feedback");
+            if (existing) existing.remove();
+            parent.appendChild(feedback);
+        }
+
+        window.onload = function () {
+            displayRandomFact();
+            loadRandomQuiz();
+        };
+    </script>
+</body>
+</html>

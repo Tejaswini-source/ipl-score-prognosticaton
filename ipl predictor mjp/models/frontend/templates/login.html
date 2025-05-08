@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://circleofcricket.com/post_image/post_image_48d6b24.JPG');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      background-color: #063970;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow:hidden;
+      height: 100px;
+    }
+
+    .scrolling-logo {
+      position:absolute;
+      height: 90px;
+      animation: slideRight 12s linear infinite;
+    }
+
+    @keyframes slideRight {
+      0% {
+        left: -150px;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+
+    .page-title {
+      text-align: center;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 60px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+      color: black;
+      font-weight: bold;
+      margin: 30px 0;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 800px;
+      display: flex;
+      flex-wrap: wrap;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: white;
+    }
+
+    .login-left, .login-right {
+      flex: 1 1 300px;
+      padding: 30px;
+      min-width: 280px;
+    }
+
+    .login-left {
+      background-color: white;
+    }
+
+    .login-right {
+      background-color: #063970;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+      color: #063970;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      font-size: 13px;
+      align-items: center;
+    }
+
+    .options input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #063970;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .login-right a {
+      margin-top: 10px;
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar with scrolling logo -->
+<div class="navbar">
+  
+  <div style="overflow: hidden; white-space: nowrap; background: white; padding: 20px 0;">
+    <div class="scrolling-logos">
+      <!-- Original Logos -->
+      <img src="https://w7.pngwing.com/pngs/218/69/png-transparent-kolkata-knight-riders-kkr-logo-sports-cricket-teams-thumbnail.png" width="150">
+      <img src="https://1000logos.net/wp-content/uploads/2024/03/Chennai-Super-Kings-Logo.png" width="150">
+      <img src="https://w7.pngwing.com/pngs/581/243/png-transparent-sunrisers-hyderabad-logo-sunrisers-hyderabad-m-chinnaswamy-stadium-2018-indian-premier-league-royal-challengers-bangalore-hyderabad-team-logo-india-thumbnail.png" width="150">
+      <img src="https://www.pngfind.com/pngs/m/672-6729592_ipl-team-logo-png-royal-challengers-bangalore-rcb.png" width="150">
+      <img src="https://i.pinimg.com/736x/af/e0/3f/afe03f3bc97b068f36180258321b5392.jpg" width="150">
+      <img src="https://toppng.com/uploads/preview/rajasthan-royals-vector-logo-11574256924oggaruq80c.png" width="150">
+      <img src="https://www.vhv.rs/dpng/d/417-4176537_delhi-daredevils-logo-png-ipl-team-logo-transparent.png" width="150">
+      <img src="https://icon2.cleanpng.com/lnd/20250107/a/3410c4aae5e02e5753120f0ed99cad.webp" width="150">
+      <img src="https://pngset.com/images/thumb-image-deccan-chargers-logo-symbol-trademark-badge-transparent-png-1298960.png" width="150">
+      <img src="https://image.pngaaa.com/104/5852104-middle.png" width="150">
+      <img src="https://w7.pngwing.com/pngs/675/783/png-transparent-pune-warriors-india-logo-sports-cricket-teams.png" width="150">
+      <img src="https://www.pikpng.com/pngl/m/21-214118_ketto-org-rising-pune-supergiants-clipart.png" width="150">
+      <img src="https://e7.pngegg.com/pngimages/40/917/png-clipart-2017-indian-premier-league-gujarat-lions-in-2017-2016-indian-premier-league-delhi-daredevils-cricket-logo-sports-thumbnail.png" width="150">
+      
+      <!-- Duplicate Logos (Same as above) -->
+      <img src="https://w7.pngwing.com/pngs/218/69/png-transparent-kolkata-knight-riders-kkr-logo-sports-cricket-teams-thumbnail.png" width="150">
+      <img src="https://1000logos.net/wp-content/uploads/2024/03/Chennai-Super-Kings-Logo.png" width="150">
+      <img src="https://w7.pngwing.com/pngs/581/243/png-transparent-sunrisers-hyderabad-logo-sunrisers-hyderabad-m-chinnaswamy-stadium-2018-indian-premier-league-royal-challengers-bangalore-hyderabad-team-logo-india-thumbnail.png" width="150">
+      <img src="https://www.pngfind.com/pngs/m/672-6729592_ipl-team-logo-png-royal-challengers-bangalore-rcb.png" width="150">
+      <img src="https://i.pinimg.com/736x/af/e0/3f/afe03f3bc97b068f36180258321b5392.jpg" width="150">
+      <img src="https://toppng.com/uploads/preview/rajasthan-royals-vector-logo-11574256924oggaruq80c.png" width="150">
+      <img src="https://www.vhv.rs/dpng/d/417-4176537_delhi-daredevils-logo-png-ipl-team-logo-transparent.png" width="150">
+      <img src="https://icon2.cleanpng.com/lnd/20250107/a/3410c4aae5e02e5753120f0ed99cad.webp" width="150">
+      <img src="https://pngset.com/images/thumb-image-deccan-chargers-logo-symbol-trademark-badge-transparent-png-1298960.png" width="150">
+      <img src="https://image.pngaaa.com/104/5852104-middle.png" width="150">
+      <img src="https://w7.pngwing.com/pngs/675/783/png-transparent-pune-warriors-india-logo-sports-cricket-teams.png" width="150">
+      <img src="https://www.pikpng.com/pngl/m/21-214118_ketto-org-rising-pune-supergiants-clipart.png" width="150">
+      <img src="https://e7.pngegg.com/pngimages/40/917/png-clipart-2017-indian-premier-league-gujarat-lions-in-2017-2016-indian-premier-league-delhi-daredevils-cricket-logo-sports-thumbnail.png" width="150">
+    </div>
+  </div>
+  
+  <style>
+    .scrolling-logos {
+      display: inline-block;
+      animation: scroll 40s linear infinite;
+      white-space: nowrap;
+    }
+  
+    .scrolling-logos img {
+      margin: 0 40px;
+      vertical-align: middle;
+      object-fit: contain;
+    }
+  
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  
+    /* Optional: Pause on hover */
+    .scrolling-logos:hover {
+      animation-play-state: paused;
+    }
+  </style>
+</div>
+
+<h1 class="page-title">IPL Score Prediction</h1>
+
+<main>
+  <div class="container">
+    <div class="login-left">
+      <h2>Sign In</h2>
+      <form>
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" placeholder="Enter your username">
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" placeholder="Enter your password">
+        </div>
+        <div class="options">
+          <label><input type="checkbox"> Remember Me</label>
+          <a href="#">Forgot Password?</a>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    <div class="login-right">
+      <h2>Welcome Back!</h2>
+      <p>Don't have an account?</p>
+      <a href="signup.html"><button>Sign Up</button></a>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

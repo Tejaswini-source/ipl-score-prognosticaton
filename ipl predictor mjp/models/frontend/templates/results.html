@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #1a73e8;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .prediction-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .score {
+            color: #1a73e8;
+            font-size: 2em;
+        }
+
+        .match-details {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: white;
+            border-radius: 4px;
+        }
+
+        .match-details p {
+            margin: 8px 0;
+        }
+
+        .visualization {
+            margin: 30px 0;
+        }
+
+        .visualization img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn {
+            display: inline-block;
+            background-color: #1a73e8;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #0d5bba;
+        }
+
+        /* Additional styles from original CSS */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+        }
+
+        .predict-btn {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .predict-btn:hover {
+            background-color: #0d5bba;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Results</h1>
+        
+        <div class="prediction-card">
+            <h2>Predicted Score: <span class="score">{{ prediction }}</span></h2>
+            
+            <div class="match-details">
+                <p><strong>Venue:</strong> {{ venue }}</p>
+                <p><strong>Batting Team:</strong> {{ batting_team }}</p>
+                <p><strong>Bowling Team:</strong> {{ bowling_team }}</p>
+                <p><strong>Batsman:</strong> {{ striker }}</p>
+                <p><strong>Bowler:</strong> {{ bowler }}</p>
+            </div>
+            
+            <div class="visualization">
+                <h3>Model Training Performance</h3>
+                <img src="{{ plot_url }}" alt="Training and Validation Loss">
+            </div>
+            
+            <a href="/" class="back-btn">Make Another Prediction</a>
+        </div>
+    </div>
+</body>
+</html>
